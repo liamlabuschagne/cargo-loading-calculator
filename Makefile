@@ -14,4 +14,4 @@ $(out): $(objects)
 	$(CXX) $(CXXFLAGS) -c *.cpp
 
 clean:
-	rm *.o $(clc)
+	rm *.o $(out)

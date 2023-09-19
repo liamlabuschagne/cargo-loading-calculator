@@ -9,6 +9,11 @@ This project will be developed in C++20 which is the latest stable version and c
 make
 ```
 
+### Running
+```sh
+./clc
+```
+
 ### Clean Build Directory
 ```sh
 make clean

@@ -1,3 +1,4 @@
+#pragma once
 #include "CargoItem.hpp"
 
 class Trolley {

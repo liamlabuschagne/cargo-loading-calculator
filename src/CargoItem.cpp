@@ -16,7 +16,7 @@ CargoItem::CargoItem(unsigned int id, float mass, std::vector<float> dimensions)
     }
 
     if(volume > 2){
-        throw std::invalid_argument("Volume must not exceed " + std::to_string(MAX_VOLUME) + "kg");
+        throw std::invalid_argument("Volume must not exceed " + std::to_string(MAX_VOLUME) + "m^3");
     }
 
     this->id = id;

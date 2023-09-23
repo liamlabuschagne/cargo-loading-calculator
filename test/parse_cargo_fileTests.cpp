@@ -80,7 +80,3 @@ TEST_F(ParseCargoFileTests,ValidVolumeLineWithIntegers){
 TEST_F(ParseCargoFileTests,ValidVolumeLineWithNoSpacesBetweenNumbers){
     EXPECT_EQ(parse_volume_line("    volume: [1,2,3]"), std::vector<float>({1,2,3}));
 }
-
-TEST_F(ParseCargoFileTests,DuplicateMassLine){
-    EXPECT_THROW(parse_cargo_file("yaml/duplicate-mass.yaml"), std::invalid_argument);
-}

@@ -15,7 +15,7 @@ CargoItem::CargoItem(unsigned int id, float mass, std::vector<float> dimensions)
         throw std::invalid_argument("Volume must be positive");
     }
 
-    if(volume > 2){
+    if(volume > MAX_VOLUME){
         throw std::invalid_argument("Volume must not exceed " + std::to_string(MAX_VOLUME) + "m^3");
     }
 

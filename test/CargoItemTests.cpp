@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <memory>
 #include "../src/CargoItem.cpp"
 
 class CargoItemTest : public ::testing::Test {
@@ -45,16 +46,16 @@ TEST_F(CargoItemTest,CreateWithVolumeThatExceedsLimit){
 }
 
 TEST_F(CargoItemTest,CheckIdIsRetained){
-    CargoItem* cargoItem = new CargoItem(id,mass,dimensions);
+    auto cargoItem = std::make_unique<CargoItem>(id,mass,dimensions);
     EXPECT_EQ(cargoItem->getId(), id);
 }
 
 TEST_F(CargoItemTest,CheckMassIsRetained){
-    CargoItem* cargoItem = new CargoItem(id,mass,dimensions);
+    auto cargoItem = std::make_unique<CargoItem>(id,mass,dimensions);
     EXPECT_EQ(cargoItem->getMass(), mass);
 }
 
 TEST_F(CargoItemTest,CheckVolumeIsRetained){
-    CargoItem* cargoItem = new CargoItem(id,mass,dimensions);
+    auto cargoItem = std::make_unique<CargoItem>(id,mass,dimensions);
     EXPECT_EQ(cargoItem->getVolume(), dimensions[0]*dimensions[1]*dimensions[2]);
 }

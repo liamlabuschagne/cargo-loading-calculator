@@ -74,23 +74,33 @@ std::vector<std::unique_ptr<CargoItem>> parse_cargo_file(std::string filePath){
     unsigned int id;
     float mass = 0;
     std::vector<float> dimensions;
+    
+    int i = 0;
+    try {
+        while(getline(cargoIfstream,line)){      
+            if(line.find("mass:") != std::string::npos){
+                mass = parse_mass_line(line);
 
-    while(getline(cargoIfstream,line)){
-        if(line.find("mass:") != std::string::npos){
-            mass = parse_mass_line(line);
-            continue;
+                i++;
+                continue;
+            }
+
+            if(line.find("volume:") != std::string::npos){
+                dimensions = parse_volume_line(line);
+                
+                // We've finished parsing a cargo item
+                cargoItems.push_back(std::make_unique<CargoItem>(id,mass,dimensions));
+
+                i++;
+                continue;
+            }
+
+            // Otherwise it must be the id line
+            id = parse_id_line(line);
+            i++;
         }
-
-        if(line.find("volume:") != std::string::npos){
-            dimensions = parse_volume_line(line);
-            
-            // We've finished parsing a cargo item
-            cargoItems.push_back(std::make_unique<CargoItem>(id,mass,dimensions));
-            continue;
-        }
-
-        // Otherwise it must be the id line
-        id = parse_id_line(line);
+    }catch(std::invalid_argument e){
+        throw std::invalid_argument("Invalid input on line "+std::to_string(i)+", "+e.what());
     }
 
     return cargoItems;

@@ -1,0 +1,3 @@
+project(CargoLoadingCalculator)
+
+add_executable(CargoLoadingCalculator main.cpp)

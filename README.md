@@ -1,48 +1,60 @@
 # Cargo Loading Calculator
-The inital requirements for this project can be found here: [Cargo App Code Challenge](https://gist.github.com/0x-a6/3c444b6ec192720c0f9712f5abbbe01e).
+The initial requirements for this project can be found here: [Cargo App Code Challenge](https://gist.github.com/0x-a6/3c444b6ec192720c0f9712f5abbbe01e).
 
 ## Additional Requirements
 After some more communication with John Grant, I also obtained these additional requirements:
 
-1. 0 volume is an invalid cargo item
-1. cargo volume format is x, y, z and the units is meters
-1. the key is an arbitrary ID and it has to be a number, a key with string char is invalid
-1. the trolley is a special space net container that doesn't have a maximum volume
-1. there is an infinite amount of trolleys
-1. see 5, no you can safely assume infinite trolleys
-1. yes the output is representing the number of trolleys
+* 0 volume is an invalid cargo item
+* Cargo volume format is x, y, z and the units is meters
+* The key is an arbitrary ID and it has to be a number, a key with string char is invalid
+* The trolley is a special space net container that doesn't have a maximum volume
+* There is an infinite amount of trolleys
+* The output is representing the number of trolleys
 
-## Language and Building
-This project will be developed in C++20 which is the latest stable version and can be compiled using the make command:
+## Dependencies
+* C++20 standard or above
+* CMake >= v3.27.4
+* GoogleTest >= v1.14.0 (automatically installed by CMake)
 
-### Dependencies
-* This project uses CMake (so make sure it is installed).
-* It also contains a submodule called "googletest" which is my chosen testing framework. To ensure it is up to date please run:
+## Usage
+### Configuring
 ```sh
-git pull --recurse-submodules
+mkdir build
+cd build
+cmake ..
 ```
+After configuring, you can build, run or test the code as follows:
 
 ### Building
+To build the application:
 ```sh
-cmake -S . -B build
+cd build/src
+make
 ```
 
-### Compiling
+To build the tests:
 ```sh
-cmake --build build
+cd build/test
+make
 ```
 
-### Running Tests
-```sh
-ctest --test-dir build
-```
+Once you have successfully built either the application or the tests, you can run them as follows:
 
 ### Running
+To run the application:
 ```sh
-build/CargoLoadingCalculator
+cd build/src
+./CargoLoadingCalculator
 ```
 
-### Clean Build Directory
+To run the tests:
 ```sh
-rm -r build
+cd build/test
+ctest
+```
+
+### Cleaning
+To clean the project of all generated files:
+```sh
+rm -rf build
 ```

@@ -1,25 +1,11 @@
 cmake_minimum_required(VERSION 3.27.4)
 
-set(This CargoLoadingCalculator)
-
-project(${This} CXX)
+project(CargoLoadingCalculator)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 enable_testing()
 
-add_subdirectory(googletest)
-
-set(Headers
-    main.hpp
-)
-
-set(Sources
-    main.cpp
-)
-
-add_executable(${This} ${Sources})
-add_library(lib${This} STATIC ${Sources} ${Headers})
-
+add_subdirectory(src)
 add_subdirectory(test)

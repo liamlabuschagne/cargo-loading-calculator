@@ -15,18 +15,34 @@ After some more communication with John Grant, I also obtained these additional 
 ## Language and Building
 This project will be developed in C++20 which is the latest stable version and can be compiled using the make command:
 
+### Dependencies
+* This project uses CMake (so make sure it is installed).
+* It also contains a submodule called "googletest" which is my chosen testing framework. To ensure it is up to date please run:
+```sh
+git pull --recurse-submodules
+```
+
+### Building
+```sh
+cmake -S . -B build
+```
+
 ### Compiling
 ```sh
-make
+cmake --build build
+```
+
+### Running Tests
+```sh
+ctest --test-dir build
 ```
 
 ### Running
 ```sh
-./clc
+build/CargoLoadingCalculator
 ```
 
 ### Clean Build Directory
 ```sh
-make clean
+rm -r build
 ```
-

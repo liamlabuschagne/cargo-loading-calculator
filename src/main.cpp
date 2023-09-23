@@ -1,6 +1,8 @@
 #include <iostream>
 #include <memory>
+#include <cmath>
 #include "parse_cargo_file.hpp"
+#include "best_fit_decreasing.hpp"
 
 int main(int argc, char** argv){
     // Show usage information if not correct number of arguments
@@ -21,12 +23,22 @@ int main(int argc, char** argv){
     }
 
     // Print out parsed items
-    for(int i = 0; i < items.size(); i++){
-        std::cout << std::to_string(items[i].get()->getId()) + ", ";
-        std::cout << std::to_string(items[i].get()->getMass()) + ", ";
-        std::cout << std::to_string(items[i].get()->getVolume());
+    for(auto &item : items){
+        std::cout << std::to_string(item.get()->getId()) + ", ";
+        std::cout << std::to_string(item.get()->getMass()) + ", ";
+        std::cout << std::to_string(item.get()->getVolume());
         std::cout << std::endl;
     }
+
+    std::cout << "Trolleys needed: "+ std::to_string(best_fit_decreasing(items)) << std::endl;
+
+    // Compute some of masses
+    float sum = 0;
+    for(auto &item : items){
+        sum+= item->getMass();
+    }
+    std::cout << "Total mass: " + std::to_string(sum) << "kg" << std::endl;
+    std::cout << "Optimal trolleys needed: "+std::to_string((int)ceil(sum/2000)) << std::endl;
 
     return 0;
 }
